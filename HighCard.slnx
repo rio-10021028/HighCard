@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="HighCard/HighCard.vcxproj" Id="73a503ba-f437-42d9-ae34-28770d4583c4" />
+</Solution>
