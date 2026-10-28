@@ -18,11 +18,17 @@ int compareInt(int num1, int num2)
 // ゲーム本体の関数
 void highCardGame(Player* p1, Player* p2)
 {
+	// null チェック
+	if (p1 == nullptr || p2 == nullptr)
+	{
+		return;
+	}
+
 	// number を決定
 	p1->hit();
 	p2->hit();
 
-	// number を表示(1, 11, 12, 13 は文字で表示)
+	// それぞれの number を表示(1, 11, 12, 13 は文字で表示)
 	p1->showName();
 	cout << " > ";
 	switch (p1->getNumber())
@@ -72,7 +78,7 @@ void highCardGame(Player* p1, Player* p2)
 	cout << "-----------------" << endl;
 	if (p1->getNumber() == p2->getNumber())
 	{
-		cout << "draw" << endl;
+		cout << "draw" << endl;		// 同じなら引き分け
 	}
 	else
 	{
@@ -86,9 +92,11 @@ int main()
 {
 	inItRand();
 
+	// 変数作成
 	Player p1("Player 1");
 	Player p2("Player 2");
 
+	// ゲーム関数呼び出し
 	cout << "----- High Card Game -----\n\n";
 	highCardGame(&p1, &p2);
 }

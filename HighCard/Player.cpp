@@ -30,11 +30,13 @@ int Player::getNumber()
 	return number;
 }
 
+//保持している数を表示する関数
 void Player::showNumber()
 {
 	cout << number;
 }
 
+// プレイヤーの名前を表示する関数
 void Player::showName()
 {
 	cout << name;
