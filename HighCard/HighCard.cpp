@@ -71,9 +71,6 @@ void highCardGame(Player* p1, Player* p2)
 	}
 	cout << endl << endl;
 
-	// 結果比較
-	int winnerValue = compareInt(p1->getNumber(), p2->getNumber());
-
 	// 勝者表示
 	cout << "-----------------" << endl;
 	if (p1->getNumber() == p2->getNumber())
@@ -82,6 +79,9 @@ void highCardGame(Player* p1, Player* p2)
 	}
 	else
 	{
+		// 結果比較
+		int winnerValue = compareInt(p1->getNumber(), p2->getNumber());
+
 		cout << "winner > ";
 		winnerValue == p1->getNumber() ? p1->showName() : p2->showName();
 		cout << endl;
