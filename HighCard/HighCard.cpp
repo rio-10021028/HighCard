@@ -4,9 +4,9 @@
 #include "Player.h"
 using namespace std;
 
-void inItRand()
+void initRand()
 {
-	srand((unsigned)time(nullptr));
+	srand(static_cast<unsigned int>(time(nullptr)));
 }
 
 // 二つの整数を渡すと大きい方を返す関数
@@ -90,7 +90,7 @@ void highCardGame(Player* p1, Player* p2)
 
 int main()
 {
-	inItRand();
+	initRand();
 
 	// 変数作成
 	Player p1("Player 1");

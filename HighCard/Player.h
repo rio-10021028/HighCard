@@ -9,8 +9,8 @@ private:
 public:
 	Player(const char* pname);
 	void hit();
-	int getNumber();
-	void showNumber();
+	int getNumber() const;
+	void showNumber() const;
 
-	void showName();	// name を表示
+	void showName() const;	// name を表示
 };

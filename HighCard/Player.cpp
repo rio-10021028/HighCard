@@ -25,19 +25,19 @@ void Player::hit()
 }
 
 //内部で決定した数を返す
-int Player::getNumber()
+int Player::getNumber() const
 {
 	return number;
 }
 
 //保持している数を表示する関数
-void Player::showNumber()
+void Player::showNumber() const
 {
 	cout << number;
 }
 
 // プレイヤーの名前を表示する関数
-void Player::showName()
+void Player::showName() const
 {
 	cout << name;
 }
