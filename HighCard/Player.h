@@ -1,16 +1,19 @@
 ﻿#pragma once
+#include "Common.h"
+#include "Deck.h"
 
 class Player
 {
-private:
-	const char* name;
-	int number;
-
 public:
 	Player(const char* pname);
-	void hit();
-	int getNumber() const;
+	void hit(Deck& cdeck);
+	CardInfo getNumber() const;
+	void showSuit() const;
 	void showNumber() const;
 
 	void showName() const;	// name を表示
+
+private:
+	const char* name;
+	CardInfo number;
 };

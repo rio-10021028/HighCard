@@ -15,25 +15,32 @@ Player::Player(const char* pname)
 	}
 
 	// number を初期化
-	number = 0;
+	number.suit = Spades;
+	number.card = A;
 }
 
-//内部で乱数により数を決定して保持
-void Player::hit()
+//deck から1 枚引いてその情報を保持
+void Player::hit(Deck& cdeck)
 {
-	number = (rand() % 13) + 1;		// 0～13 を代入
+	number = cdeck.draw();
 }
 
 //内部で決定した数を返す
-int Player::getNumber() const
+CardInfo Player::getNumber() const
 {
 	return number;
 }
 
-//保持している数を表示する関数
+// 保持しているカードのスートを表示する関数
+void Player::showSuit() const
+{
+	cout << suitNames[number.suit];
+}
+
+//保持しているカードの数を表示する関数
 void Player::showNumber() const
 {
-	cout << number;
+	cout << cardNames[number.card];
 }
 
 // プレイヤーの名前を表示する関数

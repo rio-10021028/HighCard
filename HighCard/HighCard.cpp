@@ -1,7 +1,9 @@
 ﻿#include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "Common.h"
 #include "Player.h"
+#include "Deck.h"
 using namespace std;
 
 void initRand()
@@ -24,66 +26,41 @@ void highCardGame(Player* p1, Player* p2)
 		return;
 	}
 
+	Deck deck;
+	deck.shuffle();
+
 	// number を決定
-	p1->hit();
-	p2->hit();
+	p1->hit(deck);
+	p2->hit(deck);
 
 	// それぞれの number を表示(1, 11, 12, 13 は文字で表示)
 	p1->showName();
 	cout << " > ";
-	switch (p1->getNumber())
-	{
-	case 1:
-		cout << "A";
-		break;
-	case 11:
-		cout << "J";
-		break;
-	case 12:
-		cout << "Q";
-		break;
-	case 13:
-		cout << "K";
-		break;
-	default:
-		p1->showNumber();
-	}
+	p1->showSuit();
+	cout << " の ";
+	p1->showNumber();
 	cout << endl;
 
 	p2->showName();
 	cout << " > ";
-	switch (p2->getNumber())
-	{
-	case 1:
-		cout << "A";
-		break;
-	case 11:
-		cout << "J";
-		break;
-	case 12:
-		cout << "Q";
-		break;
-	case 13:
-		cout << "K";
-		break;
-	default:
-		p2->showNumber();
-	}
-	cout << endl << endl;
+	p2->showSuit();
+	cout << " の ";
+	p2->showNumber();
+	cout << endl;
 
 	// 勝者表示
 	cout << "-----------------" << endl;
-	if (p1->getNumber() == p2->getNumber())
+	if (p1->getNumber().card == p2->getNumber().card)
 	{
 		cout << "draw" << endl;		// 同じなら引き分け
 	}
 	else
 	{
 		// 結果比較
-		int winnerValue = compareInt(p1->getNumber(), p2->getNumber());
+		int winnerValue = compareInt(p1->getNumber().card, p2->getNumber().card);
 
 		cout << "winner > ";
-		winnerValue == p1->getNumber() ? p1->showName() : p2->showName();
+		winnerValue == p1->getNumber().card ? p1->showName() : p2->showName();
 		cout << endl;
 	}
 }
