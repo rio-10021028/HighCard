@@ -10,7 +10,6 @@ public:
 	CardInfo getNumber() const;
 	void showSuit() const;
 	void showNumber() const;
-
 	void showName() const;	// name を表示
 
 private:

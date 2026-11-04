@@ -153,9 +153,9 @@ int main()
 	}
 
 	// 最終結果 表示
-	cout << "===== 最終結果 =====" << endl
-		<< "Prayer 1 > " << endl
-		<< "勝ち > " << result.win << endl
+	cout << "===== 最終結果 =====" << endl;
+	p1.showName();
+	cout << " >" << endl << "勝ち > " << result.win << endl
 		<< "負け > " << result.lose << endl
 		<< "引き分け > " << result.draw << endl;
 }
