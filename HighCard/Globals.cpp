@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 
+// suitNames と cardNames の実装部分
 const char* suitNames[] =
 {
 	"スペード",

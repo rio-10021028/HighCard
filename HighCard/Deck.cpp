@@ -1,9 +1,22 @@
 ﻿#include <iostream>
+#include <cstdlib>
 #include <algorithm>
 #include "Deck.h"
 using namespace std;
 
+// コンストラクタ
 Deck::Deck()
+{
+	for (int i = 0; i < SUITS * CARDS; i++)
+	{
+		deck[i] = { Spades, A };
+	}
+
+	drawnCards = 0;
+}
+
+// 順番に初期化
+void Deck::deckSet()
 {
 	for (int i = 0; i < SUITS; i++)
 	{
@@ -15,6 +28,7 @@ Deck::Deck()
 	}
 }
 
+// deck をシャッフル(フィッシャーイェーツ)
 void Deck::shuffle()
 {
 	int deckSize = sizeof(deck) / sizeof(deck[0]);
@@ -25,12 +39,18 @@ void Deck::shuffle()
 	}
 }
 
+// deck の一番上を引いて、その情報を返す
 CardInfo Deck::draw()
 {
-	return deck[drawnCards++];
-}
+	// もし、52 枚引いていたら deck を作り直す
+	if (drawnCards == SUITS * CARDS)
+	{
+		deckSet();
+		shuffle();
+		drawnCards = 0;
 
-CardInfo* Deck::get()
-{
-	return deck;
+		cout << "山札を引き切ったので、リセットしました。\n\n";
+	}
+
+	return deck[drawnCards++]; // drawnCards 枚目を引いた後、drawnCards を 1 増やす
 }

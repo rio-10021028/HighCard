@@ -6,7 +6,7 @@ class Player
 {
 public:
 	Player(const char* pname);
-	void hit(Deck& cdeck);
+	void hit(Deck* cdeck);
 	CardInfo getNumber() const;
 	void showSuit() const;
 	void showNumber() const;

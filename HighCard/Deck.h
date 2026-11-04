@@ -5,11 +5,11 @@ class Deck
 {
 public:
 	Deck();
+	void deckSet();
 	void shuffle();
 	CardInfo draw();
-	CardInfo* get(); // 外から変えないの意味で、参照渡しにする？
 
 private:
 	CardInfo deck[SUITS * CARDS];
-	int drawnCards = 0;
+	int drawnCards;
 };

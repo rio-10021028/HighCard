@@ -2,6 +2,7 @@
 #include "Player.h"
 using namespace std;
 
+// コンストラクタ
 Player::Player(const char* pname)
 {
 	// name に代入(null チェック)
@@ -20,12 +21,18 @@ Player::Player(const char* pname)
 }
 
 //deck から1 枚引いてその情報を保持
-void Player::hit(Deck& cdeck)
+void Player::hit(Deck* cdeck)
 {
-	number = cdeck.draw();
+	// null チェック
+	if (cdeck == nullptr)
+	{
+		return;
+	}
+
+	number = cdeck->draw();
 }
 
-//内部で決定した数を返す
+//保持しているカードの情報を返す
 CardInfo Player::getNumber() const
 {
 	return number;

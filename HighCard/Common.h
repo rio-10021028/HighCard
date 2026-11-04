@@ -1,7 +1,18 @@
 ﻿#pragma once
 
+// 定数
 const int SUITS = 4;
 const int CARDS = 13;
+
+enum Suit
+{
+	Spades,
+	Clubs,
+	Hearts,
+	Diamonds
+};
+
+extern const char* suitNames[];
 
 enum Card
 {
@@ -22,18 +33,15 @@ enum Card
 
 extern const char* cardNames[];
 
-enum Suit
-{
-	Spades,
-	Clubs,
-	Hearts,
-	Diamonds
-};
-
-extern const char* suitNames[];
-
 struct CardInfo
 {
 	Suit suit;
 	Card card;
+};
+
+struct Result
+{
+	int win;
+	int lose;
+	int draw;
 };
