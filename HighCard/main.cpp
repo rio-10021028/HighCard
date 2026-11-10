@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "Common.h"
 #include "HighCard.h"
 using namespace std;
 
@@ -30,10 +31,12 @@ int main()
 			case No:	// main 関数を終わる
 				return 0;
 			default:	// もう一度ループ
+				cout << "1 か 0 で入力してください。" << endl;
 				break;
 			}
 		}
 
+		inputFlag = false; // 次のループのために false にしておく
 		cout << endl;
 	}
 
