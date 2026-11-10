@@ -1,13 +1,13 @@
 ﻿#pragma once
 #include "Common.h"
 
-class Deck
+class Shoe
 {
 public:
-	Deck();
+	Shoe();
 	void deckSet();
 	void shuffle();
-	CardInfo draw();
+	CardInfo takeCard();
 
 private:
 	CardInfo deck[SUITS * CARDS];

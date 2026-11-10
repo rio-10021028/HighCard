@@ -139,14 +139,20 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Deck.cpp" />
+    <ClCompile Include="Dealer.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Participant.cpp" />
+    <ClCompile Include="Shoe.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="HighCard.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
-    <ClInclude Include="Deck.h" />
+    <ClInclude Include="Dealer.h" />
+    <ClInclude Include="HighCard.h" />
+    <ClInclude Include="Participant.h" />
+    <ClInclude Include="Shoe.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

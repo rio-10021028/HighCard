@@ -1,11 +1,11 @@
 ﻿#include <iostream>
 #include <cstdlib>
 #include <algorithm>
-#include "Deck.h"
+#include "Shoe.h"
 using namespace std;
 
 // コンストラクタ
-Deck::Deck()
+Shoe::Shoe()
 {
 	for (int i = 0; i < SUITS * CARDS; i++)
 	{
@@ -16,7 +16,7 @@ Deck::Deck()
 }
 
 // 順番に初期化
-void Deck::deckSet()
+void Shoe::deckSet()
 {
 	for (int i = 0; i < SUITS; i++)
 	{
@@ -29,7 +29,7 @@ void Deck::deckSet()
 }
 
 // deck をシャッフル(フィッシャーイェーツ)
-void Deck::shuffle()
+void Shoe::shuffle()
 {
 	int deckSize = sizeof(deck) / sizeof(deck[0]);
 	for (int i = deckSize - 1; i > 1; i--)
@@ -40,7 +40,7 @@ void Deck::shuffle()
 }
 
 // deck の一番上を引いて、その情報を返す
-CardInfo Deck::draw()
+CardInfo Shoe::takeCard()
 {
 	// もし、52 枚引いていたら deck を作り直す
 	if (drawnCards == SUITS * CARDS)

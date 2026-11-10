@@ -1,45 +1,6 @@
 ﻿#include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include "Common.h"
-#include "Player.h"
-#include "Deck.h"
+#include "HighCard.h"
 using namespace std;
-
-// 乱数の初期化
-void initRand()
-{
-	srand(static_cast<unsigned int>(time(nullptr)));
-}
-
-// 整数を入力させて返す関数
-int inputInt(const char* message)
-{
-	// null チェック
-	if (message == nullptr)
-	{
-		return -1;
-	}
-
-	int num;
-
-	while (true)
-	{
-		cout << message << flush;
-
-		if (cin >> num)
-		{
-			return num;
-		}
-		else
-		{
-			cout << "無効な入力です" << endl;
-
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-		}
-	}
-}
 
 // 二つの整数を渡すと大きい方を返す関数
 int compareInt(int num1, int num2)
@@ -47,37 +8,37 @@ int compareInt(int num1, int num2)
 	return (num1 > num2 ? num1 : num2);
 }
 
+// 宿題の要件の関数
+void showCardInfo(Participant* participant)
+{
+	participant->showName();
+	cout << " > ";
+	participant->showSuit();
+	cout << " の ";
+	participant->showNumber();
+	cout << endl;
+}
+
 // ゲーム本体の関数
-void highCardGame(Player* p1, Player* p2, Deck* pdeck, Result* presult)
+void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result* presult)
 {
 	// null チェック
-	if (p1 == nullptr || p2 == nullptr || pdeck == nullptr || presult == nullptr)
+	if (dealer == nullptr || player == nullptr || pdeck == nullptr || presult == nullptr)
 	{
 		return;
 	}
 
 	// number を決定
-	p1->hit(pdeck);
-	p2->hit(pdeck);
+	dealer->hit(pdeck);
+	player->hit(pdeck);
 
 	// それぞれの number を表示(1, 11, 12, 13 は文字で表示)
-	p1->showName();
-	cout << " > ";
-	p1->showSuit();
-	cout << " の ";
-	p1->showNumber();
-	cout << endl;
-
-	p2->showName();
-	cout << " > ";
-	p2->showSuit();
-	cout << " の ";
-	p2->showNumber();
-	cout << endl;
+	showCardInfo(dealer);
+	showCardInfo(player);
 
 	// 勝者表示
 	cout << "-----------------" << endl;
-	if (p1->getNumber().card == p2->getNumber().card)
+	if (dealer->getNumber().card == player->getNumber().card)
 	{
 		cout << "draw";		// 同じなら引き分け
 		presult->draw++;
@@ -85,31 +46,30 @@ void highCardGame(Player* p1, Player* p2, Deck* pdeck, Result* presult)
 	else
 	{
 		// 結果比較
-		int winnerValue = compareInt(p1->getNumber().card, p2->getNumber().card);
+		int winnerValue = compareInt(dealer->getNumber().card, player->getNumber().card);
 
 		cout << "winner > ";
-		if (winnerValue == p1->getNumber().card)
+		if (winnerValue == player->getNumber().card)
 		{
-			p1->showName();
+			player->showName();
 			presult->win++;
 		}
 		else
 		{
-			p2->showName();
+			dealer->showName();
 			presult->lose++;
 		}
 	}
 	cout << endl << endl;
 }
 
-int main()
+// ゲーム進行の関数
+void highCardGameSimulator()
 {
-	initRand();
-
 	// 変数作成
-	Player p1("Player 1");
-	Player p2("Player 2");
-	Deck deck;
+	Dealer dealer;
+	Player player("Player");
+	Shoe deck;
 	int round = 1;
 	int battles;
 	Result result =
@@ -149,12 +109,12 @@ int main()
 	for (; round <= battles; round++)
 	{
 		cout << "----- 第 " << round << " 回戦 -----\n\n";
-		highCardGame(&p1, &p2, &deck, &result);
+		highCardGame(&dealer, &player, &deck, &result);
 	}
 
 	// 最終結果 表示
 	cout << "===== 最終結果 =====" << endl;
-	p1.showName();
+	player.showName();
 	cout << " >" << endl << "勝ち > " << result.win << endl
 		<< "負け > " << result.lose << endl
 		<< "引き分け > " << result.draw << endl;
