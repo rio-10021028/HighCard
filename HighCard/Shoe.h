@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Common.h"
 
+// Shoe クラス(デッキの情報を持つクラス)
 class Shoe
 {
 public:

@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "Dealer.h"
 
+// コンストラクタ
 Dealer::Dealer()
 {
 	// name を "Dealer" で初期化

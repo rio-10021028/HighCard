@@ -8,9 +8,16 @@ int compareInt(int num1, int num2)
 	return (num1 > num2 ? num1 : num2);
 }
 
-// 宿題の要件の関数
+// 宿題指定の関数(アップキャストで Player クラスか
+// Dealer クラスを渡すと、名前とカード情報を表示)
 void showCardInfo(Participant* participant)
 {
+	// null チェック
+	if (participant == nullptr)
+	{
+		return;
+	}
+
 	participant->showName();
 	cout << " > ";
 	participant->showSuit();
