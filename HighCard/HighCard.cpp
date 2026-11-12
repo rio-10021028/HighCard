@@ -2,15 +2,9 @@
 #include "HighCard.h"
 using namespace std;
 
-// 二つの整数を渡すと大きい方を返す関数
-int compareInt(int num1, int num2)
-{
-	return (num1 > num2 ? num1 : num2);
-}
-
 // 宿題指定の関数(アップキャストで Player クラスか
 // Dealer クラスを渡すと、名前とカード情報を表示)
-void showCardInfo(Participant* participant)
+void showCard(const Participant* participant)
 {
 	// null チェック
 	if (participant == nullptr)
@@ -40,12 +34,12 @@ void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result*
 	player->hit(pdeck);
 
 	// それぞれの number を表示(1, 11, 12, 13 は文字で表示)
-	showCardInfo(dealer);
-	showCardInfo(player);
+	showCard(dealer);
+	showCard(player);
 
 	// 勝者表示
 	cout << "-----------------" << endl;
-	if (dealer->getNumber().card == player->getNumber().card)
+	if (dealer->getNumber().number == player->getNumber().number)
 	{
 		cout << "draw";		// 同じなら引き分け
 		presult->draw++;
@@ -53,10 +47,10 @@ void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result*
 	else
 	{
 		// 結果比較
-		int winnerValue = compareInt(dealer->getNumber().card, player->getNumber().card);
+		int winnerValue = max(dealer->getNumber().number, player->getNumber().number);
 
 		cout << "winner > ";
-		if (winnerValue == player->getNumber().card)
+		if (winnerValue == player->getNumber().number)
 		{
 			player->showName();
 			presult->win++;
@@ -83,10 +77,6 @@ void highCardGameSimulator()
 	{
 		0, 0, 0
 	};
-
-	// deck 準備
-	deck.deckSet();
-	deck.shuffle();
 
 	// ゲーム関数呼び出し
 	cout << "----- High Card Game -----\n\n";

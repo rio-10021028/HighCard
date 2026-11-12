@@ -12,7 +12,7 @@ const char* suitNames[] =
 	"ダイヤ  ",
 };
 
-const char* cardNames[] =
+const char* numberNames[] =
 {
 	"A",
 	"2",

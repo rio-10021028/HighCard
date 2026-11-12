@@ -6,11 +6,13 @@ class Shoe
 {
 public:
 	Shoe();
-	void deckSet();
-	void shuffle();
-	CardInfo takeCard();
+	Card takeCard();
 
 private:
-	CardInfo deck[SUITS * CARDS];
+	void setDeck();
+	void shuffle();
+
+private:
+	Card deck[SUITS * NUMBERS];
 	int drawnCards;
 };

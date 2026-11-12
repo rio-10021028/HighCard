@@ -10,7 +10,7 @@ Participant::Participant()
 
 	// number を初期化
 	number.suit = Spades;
-	number.card = A;
+	number.number = A;
 }
 
 //deck から1 枚引いてその情報を保持
@@ -26,7 +26,7 @@ void Participant::hit(Shoe* pdeck)
 }
 
 //保持しているカードの情報を返す
-CardInfo Participant::getNumber() const
+Card Participant::getNumber() const
 {
 	return number;
 }
@@ -40,7 +40,7 @@ void Participant::showSuit() const
 //保持しているカードの数を表示する関数
 void Participant::showNumber() const
 {
-	cout << cardNames[number.card];
+	cout << numberNames[number.number];
 }
 
 // 名前を表示する関数

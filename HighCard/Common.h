@@ -2,7 +2,7 @@
 
 // 定数
 const int SUITS = 4;
-const int CARDS = 13;
+const int NUMBERS = 13;
 
 // スートの列挙体
 enum Suit
@@ -18,7 +18,7 @@ enum Suit
 extern const char* suitNames[];
 
 // カードの列挙体
-enum Card
+enum Number
 {
 	A,
 	TWO,
@@ -37,13 +37,13 @@ enum Card
 
 // カードを表示する時の文字列(列挙体に対応)
 // 実装部は Globals.cpp に
-extern const char* cardNames[];
+extern const char* numberNames[];
 
 // カード情報(スートと数字)を構造体に
-struct CardInfo
+struct Card
 {
 	Suit suit;
-	Card card;
+	Number number;
 };
 
 // 結果保持の構造体

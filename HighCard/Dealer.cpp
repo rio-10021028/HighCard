@@ -9,5 +9,5 @@ Dealer::Dealer()
 
 	// number を初期化
 	number.suit = Spades;
-	number.card = A;
+	number.number = A;
 }

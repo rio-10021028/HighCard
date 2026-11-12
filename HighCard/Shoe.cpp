@@ -7,23 +7,21 @@ using namespace std;
 // コンストラクタ
 Shoe::Shoe()
 {
-	for (int i = 0; i < SUITS * CARDS; i++)
-	{
-		deck[i] = { Spades, A };
-	}
+	setDeck();
+	shuffle();
 
 	drawnCards = 0;
 }
 
 // 順番に初期化
-void Shoe::deckSet()
+void Shoe::setDeck()
 {
 	for (int i = 0; i < SUITS; i++)
 	{
-		for (int j = 0; j < CARDS; j++)
+		for (int j = 0; j < NUMBERS; j++)
 		{
-			deck[i * CARDS + j].suit = static_cast<Suit>(i);
-			deck[i * CARDS + j].card = static_cast<Card>(j);
+			deck[i * NUMBERS + j].suit = static_cast<Suit>(i);
+			deck[i * NUMBERS + j].number = static_cast<Number>(j);
 		}
 	}
 }
@@ -40,12 +38,12 @@ void Shoe::shuffle()
 }
 
 // deck の一番上を引いて、その情報を返す
-CardInfo Shoe::takeCard()
+Card Shoe::takeCard()
 {
 	// もし、52 枚引いていたら deck を作り直す
-	if (drawnCards == SUITS * CARDS)
+	if (drawnCards >= SUITS * NUMBERS)
 	{
-		deckSet();
+		setDeck();
 		shuffle();
 		drawnCards = 0;
 
