@@ -1,9 +1,7 @@
 ﻿#pragma once
-#include <algorithm>
 #include "Common.h"
-#include "Player.h"
-#include "Dealer.h"
 #include "Shoe.h"
+#include "Participant.h"
 
 // 宿題指定の関数(アップキャストで Player クラスか
 // Dealer クラスを渡すと、名前とカード情報を表示)

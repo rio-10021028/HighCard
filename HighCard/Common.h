@@ -39,13 +39,6 @@ enum Number
 // 実装部は Globals.cpp に
 extern const char* numberNames[];
 
-// カード情報(スートと数字)を構造体に
-struct Card
-{
-	Suit suit;
-	Number number;
-};
-
 // 結果保持の構造体
 struct Result
 {

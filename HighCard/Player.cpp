@@ -23,8 +23,8 @@ Player::Player(const char* pname)
 	}
 
 	// その他初期化
-	number.suit = Spades;
-	number.number = A;
+	card.suit = Spades;
+	card.number = A;
 }
 
 // デストラクタ

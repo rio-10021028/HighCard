@@ -1,5 +1,8 @@
 ﻿#include <iostream>
+#include <algorithm>
 #include "HighCard.h"
+#include "Dealer.h"
+#include "Player.h"
 using namespace std;
 
 // 宿題指定の関数(アップキャストで Player クラスか
@@ -39,7 +42,7 @@ void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result*
 
 	// 勝者表示
 	cout << "-----------------" << endl;
-	if (dealer->getNumber().number == player->getNumber().number)
+	if (dealer->getCard() == player->getCard())		// operator== の使用箇所
 	{
 		cout << "draw";		// 同じなら引き分け
 		presult->draw++;
@@ -47,10 +50,10 @@ void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result*
 	else
 	{
 		// 結果比較
-		int winnerValue = max(dealer->getNumber().number, player->getNumber().number);
+		Number winnerValue = max(dealer->getCard().number, player->getCard().number);
 
 		cout << "winner > ";
-		if (winnerValue == player->getNumber().number)
+		if (winnerValue == player->getCard().number)
 		{
 			player->showName();
 			presult->win++;

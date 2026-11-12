@@ -8,6 +8,6 @@ Dealer::Dealer()
 	name = "Dealer";
 
 	// number を初期化
-	number.suit = Spades;
-	number.number = A;
+	card.suit = Spades;
+	card.number = A;
 }

@@ -139,6 +139,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Card.cpp" />
     <ClCompile Include="Dealer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Participant.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Card.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="Dealer.h" />
     <ClInclude Include="HighCard.h" />

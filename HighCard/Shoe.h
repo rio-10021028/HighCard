@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Common.h"
+#include "Card.h"
 
 // Shoe クラス(デッキの情報を持つクラス)
 class Shoe
