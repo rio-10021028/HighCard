@@ -8,7 +8,7 @@
 void showCard(const Participant* participant);
 
 // ゲーム本体の関数
-void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result* presult);
+void highCardGame(Participant* dealer, Participant* players,int sizeP, Shoe* pdeck, int* presults);
 
 // ゲーム進行の関数
 void highCardGameSimulator();

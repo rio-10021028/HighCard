@@ -6,7 +6,8 @@ class Player:
 	public Participant
 {
 public:
-	Player(const char* pname);	// 引数付きコンストラクタ
+	Player();	// 引数付きコンストラクタ
+	void setName(); // name 設定用
 
 	// コンストラクタで動的にメモリを確保するので、
 	// コピーと代入を禁止する
@@ -14,4 +15,5 @@ public:
 	Player& operator=(const Player& other) = delete;
 
 	~Player();	// コピーした名前を delete するためのデストラクタ
+	virtual void hit(Shoe* pdeck); // hit をオーバーライド(内容はもとのまま)
 };

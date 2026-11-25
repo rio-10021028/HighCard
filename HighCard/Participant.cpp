@@ -13,18 +13,6 @@ Participant::Participant()
 	card.number = A;
 }
 
-//deck から1 枚引いてその情報を保持
-void Participant::hit(Shoe* pdeck)
-{
-	// null チェック
-	if (pdeck == nullptr)
-	{
-		return;
-	}
-
-	card = pdeck->takeCard();
-}
-
 //保持しているカードの情報を返す
 Card Participant::getCard() const
 {

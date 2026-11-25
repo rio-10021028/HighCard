@@ -8,6 +8,7 @@ class Card
 public:
 	Card();
 	bool operator==(const Card& other) const;
+	bool operator>=(const Card& other) const;
 
 public:
 	Suit suit;

@@ -7,4 +7,5 @@ class Dealer :
 {
 public:
 	Dealer();	// コンストラクタ
+	virtual void hit(Shoe* pdeck); //	オーバーライドしてイカサマしちゃうぜ
 };

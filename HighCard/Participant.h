@@ -6,7 +6,7 @@ class Participant
 {
 public:
 	Participant();
-	void hit(Shoe* pdeck);
+	virtual void hit(Shoe* pdeck) = 0; // 純粋仮想関数
 	Card getCard() const;
 	void showSuit() const;
 	void showNumber() const;

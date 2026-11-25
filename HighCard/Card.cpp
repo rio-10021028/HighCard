@@ -15,3 +15,10 @@ bool Card::operator==(const Card& other) const
 {
 	return number == other.number;
 }
+
+// 演算子オーバーロードその2 (number のみを比較する)
+// Dealer.cpp で使用
+bool Card::operator>=(const Card& other) const
+{
+	return number >= other.number;
+}

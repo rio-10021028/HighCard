@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <cstring>
 #include <algorithm>
 #include "HighCard.h"
 #include "Dealer.h"
@@ -24,44 +25,83 @@ void showCard(const Participant* participant)
 }
 
 // ゲーム本体の関数
-void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result* presult)
+void highCardGame(Participant* dealer, Participant* players, int sizeP, Shoe* pdeck, int* presults)
 {
 	// null チェック
-	if (dealer == nullptr || player == nullptr || pdeck == nullptr || presult == nullptr)
+	if (dealer == nullptr || players == nullptr || pdeck == nullptr || presults == nullptr)
 	{
 		return;
 	}
 
 	// number を決定
 	dealer->hit(pdeck);
-	player->hit(pdeck);
+	for (int i = 0; i < sizeP; i++)
+	{
+		players[i].hit(pdeck);
+	}
 
 	// それぞれの number を表示(1, 11, 12, 13 は文字で表示)
 	showCard(dealer);
-	showCard(player);
-
-	// 勝者表示
-	cout << "-----------------" << endl;
-	if (dealer->getCard() == player->getCard())		// operator== の使用箇所
+	for (int i = 0; i < sizeP; i++)
 	{
-		cout << "draw";		// 同じなら引き分け
-		presult->draw++;
+		showCard(&players[i]);
+	}
+
+	cout << "-----------------" << endl;
+	// 勝者表示
+
+	// 最大値を調べる
+	Number maxValue = A;
+	if (dealer->getCard().number >= maxValue)
+	{
+		maxValue = dealer->getCard().number;
+	}
+
+	for (int i = 0; i < sizeP; i++)
+	{
+		if (players[i].getCard().number >= maxValue)
+		{
+			maxValue = players[i].getCard().number;
+		}
+	}
+
+	// 最大値と同じカードの人を数える
+	int winnersNum = 0; // 勝者数(引き分けチェック用)
+	if (dealer->getCard().number >= maxValue)
+	{
+		winnersNum++;
+	}
+
+	for (int i = 0; i < sizeP; i++)
+	{
+		if (players[i].getCard().number >= maxValue)
+		{
+			winnersNum++;
+		}
+	}
+
+	// 引き分けチェック(全員同じ)
+	if (winnersNum >= sizeP + 1)
+	{
+		presults[sizeP + 1]++; // 結果の配列の最後尾をインクリメント
 	}
 	else
 	{
-		// 結果比較
-		Number winnerValue = max(dealer->getCard().number, player->getCard().number);
-
-		cout << "winner > ";
-		if (winnerValue == player->getCard().number)
-		{
-			player->showName();
-			presult->win++;
-		}
-		else
+		cout << "winner > " << endl;
+		if (dealer->getCard().number == maxValue)
 		{
 			dealer->showName();
-			presult->lose++;
+			cout << endl;
+			presults[0]++;
+		}
+		for (int i = 0; i < sizeP; i++)
+		{
+			if (players[i].getCard().number == maxValue)
+			{
+				players[i].showName();
+				cout << endl;
+				presults[i + 1]++;
+			}
 		}
 	}
 	cout << endl << endl;
@@ -71,15 +111,47 @@ void highCardGame(Participant* dealer, Participant* player, Shoe* pdeck, Result*
 void highCardGameSimulator()
 {
 	// 変数作成
-	Dealer dealer;
-	Player player("Player");
 	Shoe deck;
 	int round = 1;
 	int battles;
-	Result result =
+
+	// Dealer と player
+	Dealer dealer;
+
+	int numP = 2;
+
+	// 人数入力ver.
+	//while (true)
+	//{
+	//	int num = inputInt("Player の人数を入力してください > ");
+	//	if (num <= 0)
+	//	{
+	//		cout << "0 以上で入力してください。" << endl;
+	//	}
+	//	else if (num <= 10)
+	//	{
+	//		cout << num << " 人にします。" << endl;
+	//		numP = num;
+	//		break;
+	//	}
+	//	else
+	//	{
+	//		cout << "多いので10 人にします。" << endl;
+	//		numP = 10;
+	//		break;
+	//	}
+	//}
+
+	Player* players = new Player[numP];
+	int* results = new int[numP + 2];// 勝ち数保持の配列(player 人数 + dealer[0] + 引き分け数用[最後尾])
+	fill_n(results, numP + 2, 0); // 0 で埋めておく
+
+	// Player の名前設定
+	for (int i = 0; i < numP; i++)
 	{
-		0, 0, 0
-	};
+		cout << numP << " 人中 " << i + 1 << " 人目" << endl;
+		players[i].setName();
+	}
 
 	// ゲーム関数呼び出し
 	cout << "----- High Card Game -----\n\n";
@@ -109,13 +181,25 @@ void highCardGameSimulator()
 	for (; round <= battles; round++)
 	{
 		cout << "----- 第 " << round << " 回戦 -----\n\n";
-		highCardGame(&dealer, &player, &deck, &result);
+		highCardGame(&dealer, players, numP, &deck, results);
 	}
 
 	// 最終結果 表示
-	cout << "===== 最終結果 =====" << endl;
-	player.showName();
-	cout << " >" << endl << "勝ち > " << result.win << endl
-		<< "負け > " << result.lose << endl
-		<< "引き分け > " << result.draw << endl;
+	cout << "===== 最終結果 =====" << endl
+		<< "- 勝利数 -" << endl;
+	dealer.showName();
+	cout << " > " << results[0] << endl;
+	for (int i = 0; i < numP; i++)
+	{
+		players[i].showName();
+		cout << " > " << results[i + 1] << endl;
+	}
+	cout << "- 引き分け数 -" << endl
+		<< results[numP + 1] << endl;
+
+	// 解放
+	delete[] players;
+	delete[] results;
+	players = nullptr;
+	results = nullptr;
 }

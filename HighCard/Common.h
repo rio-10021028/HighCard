@@ -39,13 +39,13 @@ enum Number
 // 実装部は Globals.cpp に
 extern const char* numberNames[];
 
-// 結果保持の構造体
-struct Result
-{
-	int win;
-	int lose;
-	int draw;
-};
+//// 結果保持の構造体
+//struct Result
+//{
+//	int win;
+//	int lose;
+//	int draw;
+//};
 
 // yes or no(main.cpp 用)
 enum Select
