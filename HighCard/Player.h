@@ -14,6 +14,6 @@ public:
 	Player(const Player& other) = delete;
 	Player& operator=(const Player& other) = delete;
 
-	~Player();	// コピーした名前を delete するためのデストラクタ
+	virtual ~Player();	// コピーした名前を delete するためのデストラクタ
 	virtual void hit(Shoe* pdeck); // hit をオーバーライド(内容はもとのまま)
 };
